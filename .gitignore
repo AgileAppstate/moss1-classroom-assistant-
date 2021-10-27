@@ -103,5 +103,10 @@ dist
 # TernJS port file
 .tern-port
 
-#webstorm stuff
+# webstorm stuff
 .idea/
+
+# webpack stuff
+.webpack/
+# build outputs
+out/
