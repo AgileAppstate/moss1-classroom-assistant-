@@ -12,6 +12,7 @@ import { settingsLoginUser } from "../../modules/settings/actions/settings-login
 import { url, error, valid, name, typeLabel, fetching, all } from "../../modules/assignment/selectors"
 import { userAuthorized } from "../../modules/settings/selectors"
 import ClassroomPanel from "../shared/containers/ClassroomPanel"
+import { settingsHelloWorld } from "../../modules/settings/actions/settings-hello-world"
 
 const placeholderURL = "https://classroom.github.com/classrooms/your-org/assignments/your-assignment"
 
@@ -26,6 +27,10 @@ class PopulatePage extends Component {
 
   updateInput (e) {
     this.props.fetchAssignment(e.target.value)
+  }
+
+  helloWorld () {
+    dispatch(settingsHelloWorld("helloWorld.html"))
   }
 
   render () {
@@ -55,6 +60,11 @@ class PopulatePage extends Component {
               />
             }
           </div>
+        </div>
+        <div className="row justify-content-center populate-content">
+          <button onClick={settingsHelloWorld("helloWorld.html")} className="btn btn-primary btn-lg">
+            Added for sprint 1
+          </button>
         </div>
         <NavFooter
           left={{
