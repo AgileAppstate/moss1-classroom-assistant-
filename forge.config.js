@@ -3,14 +3,6 @@ const fs = require("fs-extra")
 const appInfo = JSON.stringify({})
 
 // eslint-disable-next-line space-before-function-paren
-function getWindowsCertificatePassword() {
-  if (process.env.KEY_PASSWORD) {
-    return process.env.KEY_PASSWORD
-  } else {
-    console.log("Skipping Windows Certificate Password")
-  }
-}
-
 module.exports = {
   packagerConfig: {
     asar: false, // TODO: true for release

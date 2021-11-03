@@ -53,6 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 IndexPage.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  helloWorld: PropTypes.func.isRequired
 }
 
 export default lifecycle(methods)(connect(null, mapDispatchToProps)(IndexPage))

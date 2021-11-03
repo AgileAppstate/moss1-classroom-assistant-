@@ -7,10 +7,10 @@ import { ipcRenderer } from "electron"
  * @return An async thunk action whcih resolves once user has logged in
  */
 export const settingsHelloWorld = () => {
-    return dispatch => {
-        return new Promise((resolve) => {
-            ipcRenderer.send("helloWorld", "")
-            resolve()
-        })
-    }
+  return dispatch => {
+    return new Promise((resolve) => {
+      ipcRenderer.send("helloWorld", "")
+      resolve()
+    })
+  }
 }
