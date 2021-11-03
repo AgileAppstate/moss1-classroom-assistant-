@@ -40,29 +40,29 @@ module.exports = {
     {
       name: "@electron-forge/maker-zip",
     },
-    {
-      name: "@electron-forge/maker-squirrel",
-      config: {
-        name: "classroom-assistant",
-        title: "classroom-assistant",
-        exe: "classroom-assistant.exe",
-        iconUrl: "https://raw.githubusercontent.com/education/classroom-assistant/master/app/resources/icon.ico",
-        setupIcon: "./app/resources/icon.ico",
-        loadingGif: "./app/resources/images/win32-installer-splash.gif",
-        certificateFile: "./script/windows-certificate.pfx",
-        certificatePassword: getWindowsCertificatePassword(),
-      },
-    },
-    {
-      name: "@electron-forge/maker-deb",
-      config: {
-        options: {
-          icon: "./app/resources/images/classroom-logo.png",
-          categories: ["Education"],
-          homepage: "https://classroom.github.com/assistant",
-        },
-      },
-    },
+    // {
+    //   name: "@electron-forge/maker-squirrel",
+    //   config: {
+    //     name: "classroom-assistant",
+    //     title: "classroom-assistant",
+    //     exe: "classroom-assistant.exe",
+    //     iconUrl: "https://raw.githubusercontent.com/education/classroom-assistant/master/app/resources/icon.ico",
+    //     setupIcon: "./app/resources/icon.ico",
+    //     loadingGif: "./app/resources/images/win32-installer-splash.gif",
+    //     certificateFile: "./script/windows-certificate.pfx",
+    //     certificatePassword: getWindowsCertificatePassword(),
+    //   },
+    // },
+    // {
+    //   name: "@electron-forge/maker-deb",
+    //   config: {
+    //     options: {
+    //       icon: "./app/resources/images/classroom-logo.png",
+    //       categories: ["Education"],
+    //       homepage: "https://classroom.github.com/assistant",
+    //     },
+    //   },
+    // },
 
   ],
   publishers: [

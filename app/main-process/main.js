@@ -18,6 +18,9 @@ const {
   loadAccessToken,
   deleteAccessToken,
 } = require("./userAuthentication")
+const {
+  helloWorld
+} = require("./helloWorld")
 const { generateMenu } = require("./menu")
 const { moveToApplicationsFolder } = require("./letsMove")
 
@@ -76,6 +79,10 @@ const createWindow = () => {
 
   ipcMain.on("requestAuthorization", () => {
     authorizeUser(mainWindow, DEFAULT_PROTOCOL_HANDLER)
+  })
+
+  ipcMain.on("helloWorld", () => {
+    helloWorld(mainWindow, DEFAULT_PROTOCOL_HANDLER)
   })
 
   ipcMain.on("deleteToken", deleteAccessToken)

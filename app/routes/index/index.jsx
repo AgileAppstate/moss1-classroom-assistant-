@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import lifecycle from "react-pure-lifecycle"
 import { settingsLoginUser } from "../../modules/settings/actions/settings-login-user"
+import { settingsHelloWorld } from "../../modules/settings/actions/settings-hello-world"
 import logo from "../../resources/images/classroom-logo.png"
 
 const methods = {
@@ -10,7 +11,7 @@ const methods = {
   },
 }
 
-const IndexPage = ({ loginUser }) => (
+const IndexPage = ({ loginUser, helloWorld }) => (
   <div className="index-container container-fluid">
     <div className="row">
       <div className="col-5 align-self-center index-left-pane">
@@ -30,6 +31,11 @@ const IndexPage = ({ loginUser }) => (
               Log In with Classroom
             </button>
           </div>
+          <div className="text-center mt-4">
+            <button onClick={helloWorld} className="btn btn-primary btn-lg">
+              Added for Sprint 1
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -40,6 +46,9 @@ const mapDispatchToProps = (dispatch) => ({
   loginUser: () => {
     dispatch(settingsLoginUser())
   },
+  helloWorld: () => {
+    dispatch(settingsHelloWorld("helloWorld.html"))
+  }
 })
 
 IndexPage.propTypes = {
