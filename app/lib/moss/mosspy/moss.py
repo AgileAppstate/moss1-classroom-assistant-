@@ -7,6 +7,8 @@ try:
 except ImportError:
     from urllib2 import urlopen
 
+
+
 class Moss:
     languages = (
         "c",
@@ -141,6 +143,7 @@ class Moss:
         return response.decode().replace("\n","")
 
     def saveWebPage(self, url, path):
+        print(url)
         if len(url) == 0:
             raise Exception("Empty url supplied")
 
@@ -151,3 +154,5 @@ class Moss:
         f = open(path, 'w', encoding='utf-8')
         f.write(content)
         f.close()
+
+
