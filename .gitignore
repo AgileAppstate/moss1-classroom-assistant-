@@ -107,7 +107,7 @@ dist
 .idea/
 
 # webpack stuff
-.webpack/
+/.webpack/
 # build outputs
 out/
 __pycache__/
