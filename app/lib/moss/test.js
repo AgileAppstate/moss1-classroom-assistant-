@@ -1,4 +1,3 @@
-@SuppressWarnings("quotes")
 async function test() {
   // Import packages and ignore any output
   let {PythonInteractive} = require('python-interactive')
