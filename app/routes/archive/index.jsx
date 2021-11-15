@@ -10,6 +10,7 @@ import ArchiveProgressPanel from "./containers/ArchiveProgressPanel"
 
 import { settingsResetState } from "../../modules/settings/actions/settings-reset-state"
 import { progress } from "../../modules/submissions/selectors"
+import { settingsHelloWorld } from "../../modules/settings/actions/settings-hello-world"
 
 const methods = {
   componentDidMount (_props) {
@@ -28,8 +29,20 @@ const forwardButton = (progress, quitApp) => {
   }
 }
 
+const mossButton = (progress, runMoss) => {
+  if (progress < 0 || progress === 100) {
+    return (
+      {
+        label: "Run Moss",
+        onClick: runMoss
+      }
+    )
+  }
+}
+
 const ArchivePage = ({
   quitApp,
+  runMoss,
   progress
 }) => (
   <div>
@@ -43,7 +56,8 @@ const ArchivePage = ({
         onClick: quitApp,
         disabled: progress < 0 || progress === 100
       }}
-      right= {forwardButton(progress, quitApp)}
+      middle = {mossButton(progress, runMoss)}
+      right = {forwardButton(progress, quitApp)}
     />
   </div>
 )
@@ -55,11 +69,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   quitApp: () => {
     dispatch(settingsResetState())
+  },
+  runMoss: () => {
+    dispatch(settingsHelloWorld("helloWorld.html"))
   }
 })
 
 ArchivePage.propTypes = {
   quitApp: PropTypes.func.isRequired,
+  runMoss: PropTypes.func.isRequired,
   progress: PropTypes.number
 }
 

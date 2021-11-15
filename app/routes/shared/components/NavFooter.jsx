@@ -20,6 +20,7 @@ const linkElement = (id, obj, className) => {
 
 const NavFooter = ({
   left,
+  middle,
   right
 }) => {
   const children = []
@@ -33,6 +34,12 @@ const NavFooter = ({
   if (right !== undefined) {
     children.push(
       linkElement(1, right, "btn btn-success pull-right")
+    )
+  }
+
+  if (middle !== undefined) {
+    children.push(
+      linkElement(2, middle, "btn btn-success pull-right")
     )
   }
 
@@ -53,7 +60,12 @@ NavFooter.propTypes = {
     label: PropTypes.string.isRequired,
     route: PropTypes.string.isRequired,
     onClick: PropTypes.func
-  })
+  }),
+  middle: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func
+  }),
+
 }
 
 export default NavFooter
