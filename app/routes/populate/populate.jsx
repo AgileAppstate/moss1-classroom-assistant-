@@ -61,11 +61,6 @@ class PopulatePage extends Component {
             }
           </div>
         </div>
-        <div className="row justify-content-center populate-content">
-          <button onClick={settingsHelloWorld("helloWorld.html")} className="btn btn-primary btn-lg">
-            Added for sprint 1
-          </button>
-        </div>
         <NavFooter
           left={{
             label: "Cancel",
