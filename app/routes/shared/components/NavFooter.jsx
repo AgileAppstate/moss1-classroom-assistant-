@@ -60,7 +60,12 @@ NavFooter.propTypes = {
     label: PropTypes.string.isRequired,
     route: PropTypes.string.isRequired,
     onClick: PropTypes.func
-  })
+  }),
+  middle: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func
+  }),
+
 }
 
 export default NavFooter

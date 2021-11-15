@@ -17,7 +17,6 @@ const methods = {
   }
 }
 
-
 const forwardButton = (progress, quitApp) => {
   if (progress < 0 || progress === 100) {
     return (
@@ -30,13 +29,12 @@ const forwardButton = (progress, quitApp) => {
   }
 }
 
-
 const mossButton = (progress, runMoss) => {
   if (progress < 0 || progress === 100) {
     return (
       {
         label: "Run Moss",
-        onClick: runMoss  
+        onClick: runMoss
       }
     )
   }
