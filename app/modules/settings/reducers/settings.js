@@ -1,8 +1,18 @@
 import { SETTINGS_CHANGE_CLONE_DESTINATION, SETTINGS_SET_USERNAME } from "../constants"
+import * as os from "os"
+
+function getUserHome() {
+
+  // From process.env
+  return process.env[(process.platform == 'win32')
+    ? 'USERPROFILE' : 'HOME'];
+}
 
 const initialState = {
   // TODO: change this to use os.tmpdir()
-  cloneDestination: "/tmp",
+  //cloneDestination: "/tmp",
+  //cloneDestination: os.tmpdir(),
+  cloneDestination: getUserHome(),
   username: null,
 }
 

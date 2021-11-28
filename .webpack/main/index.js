@@ -87,6 +87,50 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./app/main-process/helloWorld.js":
+/*!****************************************!*\
+  !*** ./app/main-process/helloWorld.js ***!
+  \****************************************/
+/*! exports provided: helloWorld */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "helloWorld", function() { return helloWorld; });
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);
+
+
+let authWindow
+
+function helloWorld(mainWindowRef, protocolHandler) {
+  openHelloWorldWindow(mainWindowRef, protocolHandler)
+}
+
+function openHelloWorldWindow(mainWindow, protocolHandler) {
+  authWindow = new electron__WEBPACK_IMPORTED_MODULE_0__["BrowserWindow"]({
+    height: 720,
+    width: 1280,
+    show: false,
+    parent: mainWindow,
+    webPreferences: {
+      session: electron__WEBPACK_IMPORTED_MODULE_0__["session"].fromPartition("auth:session"),
+      nodeIntegration: false,
+    },
+  })
+
+  const fs = __webpack_require__(/*! fs */ "fs")
+  authWindow.webContents.loadURL("data:text/html;charset=utf-8," + fs.readFileSync("submission/report.html"))
+  authWindow.once("ready-to-show", () => {
+    if (authWindow) {
+      authWindow.show()
+    }
+  })
+}
+
+
+/***/ }),
+
 /***/ "./app/main-process/letsMove.js":
 /*!**************************************!*\
   !*** ./app/main-process/letsMove.js ***!
@@ -200,6 +244,9 @@ const {
   loadAccessToken,
   deleteAccessToken,
 } = __webpack_require__(/*! ./userAuthentication */ "./app/main-process/userAuthentication.js")
+const {
+  helloWorld
+} = __webpack_require__(/*! ./helloWorld */ "./app/main-process/helloWorld.js")
 const { generateMenu } = __webpack_require__(/*! ./menu */ "./app/main-process/menu.js")
 const { moveToApplicationsFolder } = __webpack_require__(/*! ./letsMove */ "./app/main-process/letsMove.js")
 
@@ -258,6 +305,10 @@ const createWindow = () => {
     authorizeUser(mainWindow, DEFAULT_PROTOCOL_HANDLER)
   })
 
+  ipcMain.on("helloWorld", () => {
+    helloWorld(mainWindow, DEFAULT_PROTOCOL_HANDLER)
+  })
+
   ipcMain.on("deleteToken", deleteAccessToken)
 }
 
@@ -266,19 +317,9 @@ const loadPopulatePage = (assignmentURL) => {
 }
 
 const setInstanceProtocolHandler = async () => {
-  if (true) {
-    const command = "xdg-settings set default-url-scheme-handler"
-    const packageName = "classroom-assistant.desktop"
-
-    // TODO: Figure out bug in setAsDefaultProtocolClient on Linux
-    // Set Protocol Handler on Linux manually because of bug in Electron
-    try {
-      await exec(`${command} ${DEFAULT_PROTOCOL_HANDLER} ${packageName}`)
-      log.info("Successfully set protocol handler on Linux.")
-    } catch (e) {
-      log.warn(`Failed to set Protocol Handler on Linux: ${e}`)
-    }
-  } else {}
+  if (false) {} else {
+    app.setAsDefaultProtocolClient(DEFAULT_PROTOCOL_HANDLER)
+  }
 }
 
 app.on("open-url", async function (event, urlToOpen) {
@@ -2804,10 +2845,10 @@ module.exports = {
 /*!*****************************************!*\
   !*** ./node_modules/axios/package.json ***!
   \*****************************************/
-/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, browser, bugs, bundlesize, dependencies, description, devDependencies, homepage, jsdelivr, keywords, license, main, name, repository, scripts, typings, unpkg, version, default */
+/*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, devDependencies, browser, jsdelivr, unpkg, typings, dependencies, bundlesize, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_args\":[[\"axios@0.21.1\",\"/home/andrewiii/WebstormProjects/classroom-assistant\"]],\"_from\":\"axios@0.21.1\",\"_id\":\"axios@0.21.1\",\"_inBundle\":false,\"_integrity\":\"sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==\",\"_location\":\"/axios\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"axios@0.21.1\",\"name\":\"axios\",\"escapedName\":\"axios\",\"rawSpec\":\"0.21.1\",\"saveSpec\":null,\"fetchSpec\":\"0.21.1\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/axios/-/axios-0.21.1.tgz\",\"_spec\":\"0.21.1\",\"_where\":\"/home/andrewiii/WebstormProjects/classroom-assistant\",\"author\":{\"name\":\"Matt Zabriskie\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}],\"dependencies\":{\"follow-redirects\":\"^1.10.0\"},\"description\":\"Promise based HTTP client for the browser and node.js\",\"devDependencies\":{\"bundlesize\":\"^0.17.0\",\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.0.2\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^20.1.0\",\"grunt-karma\":\"^2.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^1.0.18\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^1.3.0\",\"karma-chrome-launcher\":\"^2.2.0\",\"karma-coverage\":\"^1.1.1\",\"karma-firefox-launcher\":\"^1.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-opera-launcher\":\"^1.0.0\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^1.2.0\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.7\",\"karma-webpack\":\"^1.7.0\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^5.2.0\",\"sinon\":\"^4.5.0\",\"typescript\":\"^2.8.1\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^1.13.1\",\"webpack-dev-server\":\"^1.14.1\"},\"homepage\":\"https://github.com/axios/axios\",\"jsdelivr\":\"dist/axios.min.js\",\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"axios\",\"repository\":{\"type\":\"git\",\"url\":\"git+https://github.com/axios/axios.git\"},\"scripts\":{\"build\":\"NODE_ENV=production grunt build\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"examples\":\"node ./examples/server.js\",\"fix\":\"eslint --fix lib/**/*.js\",\"postversion\":\"git push && git push --tags\",\"preversion\":\"npm test\",\"start\":\"node ./sandbox/server.js\",\"test\":\"grunt test && bundlesize\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\"},\"typings\":\"./index.d.ts\",\"unpkg\":\"dist/axios.min.js\",\"version\":\"0.21.1\"}");
+module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.1\",\"description\":\"Promise based HTTP client for the browser and node.js\",\"main\":\"index.js\",\"scripts\":{\"test\":\"grunt test && bundlesize\",\"start\":\"node ./sandbox/server.js\",\"build\":\"NODE_ENV=production grunt build\",\"preversion\":\"npm test\",\"version\":\"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json\",\"postversion\":\"git push && git push --tags\",\"examples\":\"node ./examples/server.js\",\"coveralls\":\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\",\"fix\":\"eslint --fix lib/**/*.js\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/axios/axios.git\"},\"keywords\":[\"xhr\",\"http\",\"ajax\",\"promise\",\"node\"],\"author\":\"Matt Zabriskie\",\"license\":\"MIT\",\"bugs\":{\"url\":\"https://github.com/axios/axios/issues\"},\"homepage\":\"https://github.com/axios/axios\",\"devDependencies\":{\"bundlesize\":\"^0.17.0\",\"coveralls\":\"^3.0.0\",\"es6-promise\":\"^4.2.4\",\"grunt\":\"^1.0.2\",\"grunt-banner\":\"^0.6.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-clean\":\"^1.1.0\",\"grunt-contrib-watch\":\"^1.0.0\",\"grunt-eslint\":\"^20.1.0\",\"grunt-karma\":\"^2.0.0\",\"grunt-mocha-test\":\"^0.13.3\",\"grunt-ts\":\"^6.0.0-beta.19\",\"grunt-webpack\":\"^1.0.18\",\"istanbul-instrumenter-loader\":\"^1.0.0\",\"jasmine-core\":\"^2.4.1\",\"karma\":\"^1.3.0\",\"karma-chrome-launcher\":\"^2.2.0\",\"karma-coverage\":\"^1.1.1\",\"karma-firefox-launcher\":\"^1.1.0\",\"karma-jasmine\":\"^1.1.1\",\"karma-jasmine-ajax\":\"^0.1.13\",\"karma-opera-launcher\":\"^1.0.0\",\"karma-safari-launcher\":\"^1.0.0\",\"karma-sauce-launcher\":\"^1.2.0\",\"karma-sinon\":\"^1.0.5\",\"karma-sourcemap-loader\":\"^0.3.7\",\"karma-webpack\":\"^1.7.0\",\"load-grunt-tasks\":\"^3.5.2\",\"minimist\":\"^1.2.0\",\"mocha\":\"^5.2.0\",\"sinon\":\"^4.5.0\",\"typescript\":\"^2.8.1\",\"url-search-params\":\"^0.10.0\",\"webpack\":\"^1.13.1\",\"webpack-dev-server\":\"^1.14.1\"},\"browser\":{\"./lib/adapters/http.js\":\"./lib/adapters/xhr.js\"},\"jsdelivr\":\"dist/axios.min.js\",\"unpkg\":\"dist/axios.min.js\",\"typings\":\"./index.d.ts\",\"dependencies\":{\"follow-redirects\":\"^1.10.0\"},\"bundlesize\":[{\"path\":\"./dist/axios.min.js\",\"threshold\":\"5kB\"}]}");
 
 /***/ }),
 
@@ -4087,7 +4128,7 @@ function findLogPath(appName) {
   var homeDir = os.homedir ? os.homedir() : process.env['HOME'];
   
   var dir;
-  switch ("linux") {
+  switch ("win32") {
     case 'linux': {
       dir = prepareDir(process.env['XDG_CONFIG_HOME'], appName)
         .or(homeDir, '.config', appName)
@@ -4211,7 +4252,7 @@ function loadPackageName() {
 
   if (!packageFile && process.resourcesPath) {
     packageFile = find(path.join(process.resourcesPath, 'app.asar'));
-    var electronModule = ( false ? undefined : "/home/andrewiii/WebstormProjects/classroom-assistant/.webpack/main") + '/native_modules/package.json';
+    var electronModule = ( false ? undefined : "D:\\convi\\OneDrive\\Documents\\CurrentClasses\\CS5666_101\\repo\\moss1-classroom-assistant-\\.webpack\\main") + '/native_modules/package.json';
     if (packageFile && packageFile.indexOf(electronModule) !== -1) {
       packageFile = null;
     }
@@ -4655,7 +4696,24 @@ var run = function(args, done) {
 };
 
 var check = function() {
-  if (false) { var target, cmd; }
+  if (true) {
+    var cmd = process.argv[1];
+    debug('processing squirrel command `%s`', cmd);
+    var target = path.basename(process.execPath);
+
+    if (cmd === '--squirrel-install' || cmd === '--squirrel-updated') {
+      run(['--createShortcut=' + target + ''], app.quit);
+      return true;
+    }
+    if (cmd === '--squirrel-uninstall') {
+      run(['--removeShortcut=' + target + ''], app.quit);
+      return true;
+    }
+    if (cmd === '--squirrel-obsolete') {
+      app.quit();
+      return true;
+    }
+  }
   return false;
 };
 
@@ -4773,7 +4831,9 @@ module.exports = (name, opts) => {
 
 	if (false) {}
 
-	if (false) {}
+	if (true) {
+		return windows(name);
+	}
 
 	return linux(name);
 };
@@ -5962,7 +6022,7 @@ var constants = __webpack_require__(/*! constants */ "constants")
 var origCwd = process.cwd
 var cwd = null
 
-var platform = process.env.GRACEFUL_FS_PLATFORM || "linux"
+var platform = process.env.GRACEFUL_FS_PLATFORM || "win32"
 
 process.cwd = function() {
   if (!cwd)
@@ -6478,7 +6538,7 @@ module.exports = function (x) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("./native_modules/build/Release/keytar.node")
+module.exports = require("./native_modules/build\\Release\\keytar.node")
 
 /***/ }),
 
@@ -6609,7 +6669,15 @@ const defaults = {
 // https://github.com/nodejs/node/issues/8987
 // https://github.com/libuv/libuv/pull/1088
 const checkPath = pth => {
-	if (false) {}
+	if (true) {
+		const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path.parse(pth).root, ''));
+
+		if (pathHasInvalidWinCharacters) {
+			const err = new Error(`Path contains invalid characters: ${pth}`);
+			err.code = 'EINVAL';
+			throw err;
+		}
+	}
 };
 
 module.exports = (input, opts) => Promise.resolve().then(() => {
@@ -7107,7 +7175,7 @@ module.exports.sync = cwd => findUp.sync('package.json', {cwd});
 // ignored, since we can never get coverage for them.
 var assert = __webpack_require__(/*! assert */ "assert")
 var signals = __webpack_require__(/*! ./signals.js */ "./node_modules/signal-exit/signals.js")
-var isWin = /^win/i.test("linux")
+var isWin = /^win/i.test("win32")
 
 var EE = __webpack_require__(/*! events */ "events")
 /* istanbul ignore if */
@@ -7304,31 +7372,9 @@ module.exports = [
   'SIGTERM'
 ]
 
-if (true) {
-  module.exports.push(
-    'SIGVTALRM',
-    'SIGXCPU',
-    'SIGXFSZ',
-    'SIGUSR2',
-    'SIGTRAP',
-    'SIGSYS',
-    'SIGQUIT',
-    'SIGIOT'
-    // should detect profiler and enable/disable accordingly.
-    // see #21
-    // 'SIGPROF'
-  )
-}
+if (false) {}
 
-if (true) {
-  module.exports.push(
-    'SIGIO',
-    'SIGPOLL',
-    'SIGPWR',
-    'SIGSTKFLT',
-    'SIGUNUSED'
-  )
-}
+if (false) {}
 
 
 /***/ }),
