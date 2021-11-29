@@ -33,7 +33,7 @@ const IndexPage = ({ loginUser, helloWorld }) => (
           </div>
           <div className="text-center mt-4">
             <button onClick={helloWorld} className="btn btn-primary btn-lg">
-              Added for Sprint 2
+              Show Latest Report
             </button>
           </div>
         </div>
