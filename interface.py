@@ -1,6 +1,6 @@
 import mosspy
 
-def remote_call(userid = 973241060, files = "submission/a01-*.py", type="python"):
+def remote_call(userid = 973241060, files = "submission/a01-*.py", type="python", outputDir = "./"):
 
 
     m = mosspy.Moss(userid, type)
@@ -20,9 +20,9 @@ def remote_call(userid = 973241060, files = "submission/a01-*.py", type="python"
     print ("Report URL: " + url)
 
     # Save report file
-    m.saveWebPage(url, "submission/report.html")
+    m.saveWebPage(url, outputDir + "report.html")
 
-    mosspy.download_report(url, "submission/report/", connections=8, log_level=30, on_read=lambda url: print('*', end='', flush=True))
+    mosspy.download_report(url, outputDir + "report/", connections=8, log_level=30, on_read=lambda url: print('*', end='', flush=True))
     # log_level=logging.DEBUG (20 to disable)
     # on_read function run for every downloaded file
     return 0
