@@ -7,6 +7,7 @@ import AppContainer from "./AppContainer"
 import IndexPage from "./index/index"
 import SelectPage from "./select/index"
 import ConfirmPage from "./confirm/index"
+import ConfirmMossPage from "./confirm_moss/index"
 import ArchivePage from "./archive/index"
 import SettingsPage from "./settings/index"
 import PopulatePage from "./populate/populate"
@@ -38,6 +39,10 @@ const routeConfig = {
     {
       path: "/settings",
       component: SettingsPage
+    },
+    {
+      path: "/confirm_moss",
+      component: ConfirmMossPage
     }
   ]
 }
