@@ -33,8 +33,10 @@ const mossButton = (progress, runMoss) => {
   if (progress < 0 || progress === 100) {
     return (
       {
-        label: "Run Moss",
-        onClick: runMoss
+        label: "Open Moss",
+        // route: "/archive",
+        route: "/confirm_moss",
+        // onClick: runMoss
       }
     )
   }
@@ -69,9 +71,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   quitApp: () => {
     dispatch(settingsResetState())
-  },
-  runMoss: () => {
-    dispatch(settingsHelloWorld("helloWorld.html"))
   }
 })
 
