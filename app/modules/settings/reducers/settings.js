@@ -8,6 +8,35 @@ function getUserHome() {
     ? 'USERPROFILE' : 'HOME'];
 }
 
+/*
+const electron = require('electron');
+const fs = require('fs');
+const path = require('path');
+
+const dataPath = electron.app.getPath('userData');
+const filePath = path.join(dataPath, 'config.json');
+
+function writeData(key, value){
+  let contents = parseData()
+  contents[key] = value;
+  fs.writeFileSync(filePath, JSON.stringify(contents));
+}
+
+function readData(key, value) {
+  let contents = parseData()
+  return contents[key]
+}
+
+function parseData(){
+  const defaultData = {}
+  try {
+    return JSON.parse(fs.readFileSync(filePath));
+  } catch(error) {
+    return defaultData;
+  }
+}
+*/
+
 const initialState = {
   // TODO: change this to use os.tmpdir()
   //cloneDestination: "/tmp",
